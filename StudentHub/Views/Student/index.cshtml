@@ -2,15 +2,18 @@
 
 <h1>Students</h1>
 
+@if (TempData["SuccessMessage"] != null)
+{
+    <p>@TempData["SuccessMessage"]</p>
+}
+
 <table>
     <thead>
         <tr>
             <th>ID</th>
             <th>First Name</th>
             <th>Last Name</th>
-            <th>Enrollment Date</th>
-            <th>Accepted Code of Conduct</th>
-
+            <th>Actions</th>
         </tr>
     </thead>
 
@@ -21,9 +24,23 @@
                 <td>@s.StudentId</td>
                 <td>@s.FirstName</td>
                 <td>@s.LastName</td>
-                <td>@s.EnrollmentDate.ToShortDateString()</td>
-                <td>@s.AcceptedCodeOfConduct</td>
 
+                <td>
+                    <a asp-action="Details"
+                       asp-route-id="@s.StudentId"> 
+                        Details
+                    </a>
+                    
+                    <a asp-action="Edit"
+                       asp-route-id="@s.StudentId"> 
+                        Edit
+                    </a>
+
+                    <a asp-action="Delete"
+                       asp-route-id="@s.StudentId"> 
+                        Delete
+                    </a>
+                </td>
             </tr>
         }
     </tbody>

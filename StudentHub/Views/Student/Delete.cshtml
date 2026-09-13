@@ -1,0 +1,25 @@
+@model StudentHub.Models.Student
+
+<h1>Delete Student</h1>
+
+<p>Are you sure you want to delete this student?</p>
+
+<p>
+    <strong>Name:</strong>
+    @Model.FirstName @Model.LastName
+</p>
+
+<p>
+    <strong>Student ID:</strong>
+    @Model.StudentId
+</p>
+
+<form asp-action="Delete" method="post">
+
+    <input type="hidden" asp-for="StudentId" />
+
+    <button type="submit">Yes, Delete</button>
+
+    <a asp-action="Index">Cancel</a>
+
+</form>

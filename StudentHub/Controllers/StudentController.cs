@@ -72,6 +72,9 @@ namespace StudentHub.Controllers
 
             students.Add(student);
 
+             TempData["SuccessMessage"] =
+                 $"{student.FirstName} {student.LastName} was added successfully.";
+
             return RedirectToAction("Index");
         }
 
@@ -103,6 +106,74 @@ namespace StudentHub.Controllers
         public IActionResult GoToGoogle()
         {
             return Redirect("https://www.google.com");
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var student = students.FirstOrDefault(s => s.StudentId == id);
+
+            if (student == null)
+            {
+                return NotFound();
+            }
+
+            return View(student);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Student student)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(student);
+            }
+
+            var existing = students.FirstOrDefault(
+                s => s.StudentId == student.StudentId);
+
+            if (existing == null)
+            {
+                return NotFound();
+            }
+
+            existing.FirstName = student.FirstName;
+            existing.LastName = student.LastName;
+            existing.EnrollmentDate = student.EnrollmentDate;
+            existing.AcceptedCodeOfConduct = student.AcceptedCodeOfConduct;
+
+            TempData["SuccessMessage"] =
+                $"{existing.FirstName} {existing.LastName} was updated.";
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var student = students.FirstOrDefault(s => s.StudentId == id);
+
+            if (student == null)
+            {
+                return NotFound();
+            }
+
+            return View(student);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var student = students.FirstOrDefault(s => s.StudentId == id);
+
+            if (student != null)
+            {
+                students.Remove(student);
+
+                TempData["SuccessMessage"] = "Student deleted.";
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }

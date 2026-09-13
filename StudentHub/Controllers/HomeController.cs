@@ -5,9 +5,11 @@ using StudentHub.Models;
 namespace StudentHub.Controllers;
 
 public class HomeController : Controller
-{
-    public IActionResult Index()
+{    public IActionResult Index()
     {
+        
+    ViewBag.thing = "Home";
+
         return View();
     }
 

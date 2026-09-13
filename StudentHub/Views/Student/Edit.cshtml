@@ -1,0 +1,35 @@
+@model StudentHub.Models.Student
+
+<h1>Edit Student</h1>
+
+<form asp-action="Edit" method="post">
+
+    <input type="hidden" asp-for="StudentId" />
+
+    <div>
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" />
+        <span asp-validation-for="FirstName"></span>
+    </div>
+
+    <div>
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" />
+        <span asp-validation-for="LastName"></span>
+    </div>
+
+    <div>
+        <label asp-for="EnrollmentDate"></label>
+        <input asp-for="EnrollmentDate" />
+        <span asp-validation-for="EnrollmentDate"></span>
+    </div>
+
+    <div>
+        <label asp-for="AcceptedCodeOfConduct"></label>
+        <input asp-for="AcceptedCodeOfConduct" />
+        <span asp-validation-for="AcceptedCodeOfConduct"></span>
+    </div>
+
+    <button type="submit">Save Changes</button>
+
+</form>
