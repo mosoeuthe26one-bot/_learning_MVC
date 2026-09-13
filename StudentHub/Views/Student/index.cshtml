@@ -1,0 +1,30 @@
+@model IEnumerable<StudentHub.Models.Student>
+
+<h1>Students</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Enrollment Date</th>
+            <th>Accepted Code of Conduct</th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var s in Model)
+        {
+            <tr>
+                <td>@s.StudentId</td>
+                <td>@s.FirstName</td>
+                <td>@s.LastName</td>
+                <td>@s.EnrollmentDate.ToShortDateString()</td>
+                <td>@s.AcceptedCodeOfConduct</td>
+
+            </tr>
+        }
+    </tbody>
+</table>
